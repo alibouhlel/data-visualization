@@ -54,7 +54,7 @@ io.sockets.on('connection', function(socket){
              "longitude": longitude
              }
      var obj=JSON.stringify(countryJSON);
-     console.log(obj);
+     //console.log(obj);
      socket.emit('country', obj);
    }
   });
