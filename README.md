@@ -1,2 +1,4 @@
-# data-visualization
-nodejs consumes data from kafka topic and then visualize it on google map (real time) using socket.io
+# Data visualization
+## Technologies used in this project: 
+### 1- Nodejs 
+### 2- apache kafka 
