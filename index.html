@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>  </head>
+    <script src = "https://maps.googleapis.com/maps/api/js"></script>
+ <body onload = "loadMap()">
+    <script>
+	function loadMap(){
+
+            var mapProp = {
+               center:new google.maps.LatLng(28.613939,77.209021),
+               zoom:5,
+               mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+           var socket = io.connect();
+
+      socket.on('country', function(data){
+        var obj = JSON.parse(data);
+        $('#date').text(obj.latitude);
+        var myCity = new google.maps.Circle({
+              // center:new google.maps.LatLng(40,77.309021),
+	       center:new google.maps.LatLng(obj.latitude,obj.longitude),
+               radius:150600,
+
+               strokeColor:"#B40404",
+               strokeOpacity:0.6,
+               strokeWeight:2,
+
+               fillColor:"#B40404",
+               fillOpacity:0.6
+            });
+
+            myCity.setMap(map);
+      });
+
+
+       
+         }
+
+     /* var socket = io.connect();
+
+      socket.on('country', function(data){
+	var obj = JSON.parse(data);
+        $('#date').text(obj.latitude);
+	var myCity = new google.maps.Circle({
+               center:new google.maps.LatLng(40,77.309021),
+               radius:150600,
+
+               strokeColor:"#B40404",
+               strokeOpacity:0.6,
+               strokeWeight:2,
+
+               fillColor:"#B40404",
+               fillOpacity:0.6
+            });
+
+            myCity.setMap(map);
+      }); 
+    */
+    </script>
+    <div id="date"></div>
+    <div id = "googleMap" style = "width:1200px; height:650px;"></div>
+   </body>
+  
+</html>
